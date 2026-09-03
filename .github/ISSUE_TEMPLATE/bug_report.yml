@@ -1,0 +1,63 @@
+name: Bug report
+description: A window landed in the wrong place, or Stein did not restore at all
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The diagnostic output below explains most reports on its own, so please
+        include it. It starts no UI and moves no windows.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened
+      description: What did you expect, and what did Stein do instead?
+      placeholder: |
+        Redocked the MacBook. Windows came back on the right displays but Slack
+        and Chrome ended up full-height on the left instead of stacked.
+    validations:
+      required: true
+
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostics
+      description: Output of `/Applications/Stein.app/Contents/MacOS/Stein --check`
+      render: text
+    validations:
+      required: true
+
+  - type: input
+    id: receipt
+    attributes:
+      label: Last receipt
+      description: The line under `Receipts › Last` in the menu
+      placeholder: 14 windows, 2 retried, 1 failed, 0.9s
+    validations:
+      required: false
+
+  - type: input
+    id: displays
+    attributes:
+      label: Display setup
+      description: Which displays, how they are arranged, and what changed
+      placeholder: MacBook Pro 14" plus a 4K over USB-C, external above the laptop
+    validations:
+      required: true
+
+  - type: input
+    id: macos
+    attributes:
+      label: macOS version
+      placeholder: "26.5 (25F84)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: apps
+    attributes:
+      label: Apps involved
+      description: If it is app-specific, which apps and versions
+    validations:
+      required: false

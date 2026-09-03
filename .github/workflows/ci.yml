@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Toolchain
+        run: swift --version
+
+      - name: Build
+        run: swift build -c release
+
+      - name: Test
+        run: ./test.sh
+
+      # Proves the hand-assembled bundle still assembles and signs. It cannot be
+      # launched here: Stein needs Accessibility access and a window server.
+      - name: Assemble app bundle
+        run: ./build.sh

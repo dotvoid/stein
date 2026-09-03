@@ -1,0 +1,10 @@
+# Swift Package Manager
+.build/
+.swiftpm/
+
+# Assembled app bundle and the icon build.sh generates into it
+build/
+Resources/AppIcon.icns
+
+# macOS
+.DS_Store
